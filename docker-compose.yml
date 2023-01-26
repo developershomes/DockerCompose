@@ -14,10 +14,12 @@
     app:
       build: docker/app/.
       volumes:
-        - ".:/pglr"
+        - ".:/DockerCompose"
       depends_on:
         - db
       networks:
         - dbnet
+      ports:
+        - "8000"
   networks:
     dbnet:
