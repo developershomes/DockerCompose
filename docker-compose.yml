@@ -1,0 +1,23 @@
+  version: '3'
+
+  services:
+    db:
+      build: docker/db/.
+      environment:
+        - POSTGRES_DB=postgres
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+      networks:
+        - dbnet
+      ports:
+        - "5432"
+    app:
+      build: docker/app/.
+      volumes:
+        - ".:/pglr"
+      depends_on:
+        - db
+      networks:
+        - dbnet
+  networks:
+    dbnet:
